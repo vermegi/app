@@ -1,7 +1,7 @@
 configs ={
   :git => {
     :user => '20120917brussels',
-    :remotes => potentially_change("remotes",__FILE__),
+    :remotes => %w/nruys WernerVermeylen koenmannaerts ridingwolf vermegi/,
     :repo => 'app' 
   }
 }
