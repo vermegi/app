@@ -88,6 +88,7 @@
     <Compile Include="web\IProcessOneRequest.cs" />
     <Compile Include="web\IProcessRequests.cs" />
     <Compile Include="web\MissingCommandCreation_Behaviour.cs" />
+    <Compile Include="web\RequestProcessingCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
