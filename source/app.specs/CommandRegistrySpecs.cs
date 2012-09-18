@@ -42,6 +42,29 @@ namespace app.specs
         static IEncapsulateRequestDetails request;
         static List<IProcessOneRequest> all_possible_commands;
       }
+
+      public class and_it_does_not_have_the_COmmand
+      {
+        Establish c = () =>
+        {
+          all_possible_commands = Enumerable.Range(1,1000).Select(x => fake.an<IProcessOneRequest>()).ToList();
+          request = fake.an<IEncapsulateRequestDetails>();
+          depends.on<IEnumerable<IProcessOneRequest>>(all_possible_commands);
+          depends.on<MissingCommandCreation_Behaviour>(() => the_special_case);
+        };
+
+
+        Because b = () =>
+          result = sut.get_the_command_that_can_process(request);
+
+        It should_return_the_command_that_can_process_It = () =>
+          result.ShouldEqual(the_special_case);
+
+        static IProcessOneRequest result;
+        static IProcessOneRequest the_special_case;
+        static IEncapsulateRequestDetails request;
+        static List<IProcessOneRequest> all_possible_commands;
+      }
     }
   }
 }
