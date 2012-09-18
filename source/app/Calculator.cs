@@ -16,8 +16,11 @@ namespace app
     {
       if (i < 0 || i1 < 0) throw new ArgumentException("Not allowed to add a negative to a positive.");
 
-
       connection.Open();
+      var command = connection.CreateCommand();
+      command.CommandType = CommandType.StoredProcedure;
+      command.CommandText = "MyCoolStoredProcedure";
+      command.ExecuteNonQuery();
 
       return i + i1;
     }
