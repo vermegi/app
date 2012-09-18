@@ -18,11 +18,14 @@ namespace app
 
       connection.Open();
       var command = connection.CreateCommand();
-      command.CommandType = CommandType.StoredProcedure;
-      command.CommandText = "MyCoolStoredProcedure";
       command.ExecuteNonQuery();
 
       return i + i1;
+    }
+
+    public void shut_off()
+    {
+      throw new NotImplementedException();
     }
   }
 }
