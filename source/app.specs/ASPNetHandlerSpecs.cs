@@ -23,7 +23,7 @@ namespace app.specs
       {
         front_controller = depends.on<IProcessRequests>();
         request_factory = depends.on<ICreateControllerRequests>();
-        a_created_request = new object();
+        a_created_request = fake.an<IEncapsulateRequestDetails>();
         an_context = ObjectFactory.web.create_http_context();
 
         request_factory.setup(x => x.create_request_from(an_context)).Return(a_created_request);
@@ -36,7 +36,7 @@ namespace app.specs
         front_controller.received(x => x.process(a_created_request));
 
       static IProcessRequests front_controller;
-      static object a_created_request;
+      static IEncapsulateRequestDetails a_created_request;
       static HttpContext an_context;
       static ICreateControllerRequests request_factory;
     }

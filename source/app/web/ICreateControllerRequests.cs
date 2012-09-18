@@ -4,6 +4,6 @@ namespace app.web
 {
   public interface ICreateControllerRequests
   {
-    object create_request_from(HttpContext an_context);
+    IEncapsulateRequestDetails create_request_from(HttpContext an_context);
   }
 }
