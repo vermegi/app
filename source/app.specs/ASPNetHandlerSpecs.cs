@@ -16,8 +16,7 @@ namespace app.specs
         
     }
 
-   
-    public class when_processing_and_http_context : concern
+    public class when_processing_an_http_context : concern
     {
       Establish c = () =>
       {
@@ -32,7 +31,7 @@ namespace app.specs
       Because b = () =>
         sut.ProcessRequest(an_context);
 
-      It should_delegate_The_processing_of_AN_Ew_controller_request_TOT_HE_front_controller = () =>
+      It should_delegate_the_processing_of_a_new_controller_request_to_the_front_controller = () =>
         front_controller.received(x => x.process(a_created_request));
 
       static IProcessRequests front_controller;
