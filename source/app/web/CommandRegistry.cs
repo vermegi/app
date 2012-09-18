@@ -6,15 +6,18 @@ namespace app.web
   public class CommandRegistry : IFindCommands
   {
       private IEnumerable<IProcessOneRequest> all_commands;
+      private MissingCommandCreation_Behaviour missingCommandhaBehaviour;
 
-      public CommandRegistry(IEnumerable<IProcessOneRequest> processList)
+      public CommandRegistry(IEnumerable<IProcessOneRequest> processList, MissingCommandCreation_Behaviour missingCommandhaBehaviour)
       {
           all_commands = processList;
+          this.missingCommandhaBehaviour = missingCommandhaBehaviour;
       }
 
       public IProcessOneRequest get_the_command_that_can_process(IEncapsulateRequestDetails request)
       {
-          return all_commands.Single(process => process.can_run(request));
-    }
+          var theCommandThatCanProcess = all_commands.SingleOrDefault(process => process.can_run(request));
+          return theCommandThatCanProcess ?? missingCommandhaBehaviour.Invoke();
+      }
   }
 }
