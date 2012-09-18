@@ -49,6 +49,7 @@ namespace app.specs
         {
           all_possible_commands = Enumerable.Range(1,1000).Select(x => fake.an<IProcessOneRequest>()).ToList();
           request = fake.an<IEncapsulateRequestDetails>();
+          the_special_case = fake.an<IProcessOneRequest>();
           depends.on<IEnumerable<IProcessOneRequest>>(all_possible_commands);
           depends.on<MissingCommandCreation_Behaviour>(() => the_special_case);
         };
@@ -57,7 +58,7 @@ namespace app.specs
         Because b = () =>
           result = sut.get_the_command_that_can_process(request);
 
-        It should_return_the_command_that_can_process_It = () =>
+        It should_return_the_special_case = () =>
           result.ShouldEqual(the_special_case);
 
         static IProcessOneRequest result;
