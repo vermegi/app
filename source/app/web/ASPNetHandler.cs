@@ -1,16 +1,27 @@
-﻿using System;
-using System.Web;
+﻿using System.Web;
 
 namespace app.web
 {
   public class ASPNetHandler : IHttpHandler
-
   {
-    public bool IsReusable { get; private set; }
+    IProcessRequests front_controller;
+    ICreateControllerRequests request_factory;
+
+    public ASPNetHandler(IProcessRequests processRequests, ICreateControllerRequests createControllerRequests)
+    {
+      this.front_controller = processRequests;
+      this.request_factory = createControllerRequests;
+    }
 
     public void ProcessRequest(HttpContext context)
     {
-      throw new NotImplementedException();
+      var request = request_factory.create_request_from(context);
+      this.front_controller.process(request);
+    }
+
+    public bool IsReusable
+    {
+      get { return true; }
     }
   }
 }

@@ -2,6 +2,6 @@
 {
   public interface IProcessRequests
   {
-    void process(object request);
+    void process(IEncapsulateRequestDetails request);
   }
 }
