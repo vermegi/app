@@ -1,2 +1,2 @@
 [Core]
-log_path : #<Configatron::Store:0x2c60d60>
+log_path : This is my own setting
