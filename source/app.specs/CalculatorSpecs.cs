@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using System.Security.Principal;
-using System.Threading;
 using Machine.Specifications;
 using Rhino.Mocks;
 using developwithpassion.specifications.extensions;
