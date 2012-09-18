@@ -1,2 +1,2 @@
 [Core]
-log_path : #<Configatron::Store:0x3203580>
+log_path : #<Configatron::Store:0x33fdbc0>
