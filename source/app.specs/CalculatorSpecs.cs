@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data;
 using Machine.Specifications;
-using developwithpassion.specifications.rhinomocks;
 using developwithpassion.specifications.extensions;
+using developwithpassion.specifications.rhinomocks;
 
 namespace app.specs
 {
@@ -17,17 +17,20 @@ namespace app.specs
       //arrange
       Establish c = () =>
       {
-        connection = depends.on<IDbConnection>();   
+        connection = depends.on<IDbConnection>();
       };
 
+      Because b = () =>
+        result = sut.add(2, 3);
 
       It should_open_a_connection_To_the_db = () =>
         connection.received(x => x.Open());
-        
+
       It should_return_the_sum = () =>
-        sut.add(2, 3).ShouldEqual(5);
+        result.ShouldEqual(5);
 
       static IDbConnection connection;
+      static int result;
     }
 
     public class when_attempting_to_add_a_Negative_to_a_positive : concern
