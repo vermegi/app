@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data;
 using Machine.Specifications;
-using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
+using developwithpassion.specifications.extensions;
 
 namespace app.specs
 {
@@ -18,19 +18,25 @@ namespace app.specs
       Establish c = () =>
       {
         connection = depends.on<IDbConnection>();
+        command = fake.an<IDbCommand>();
+
+        connection.setup(x => x.CreateCommand()).Return(command);
       };
 
       Because b = () =>
-        result = sut.add(2, 3);
+        sut.add(1, 2);
 
       It should_open_a_connection_To_the_db = () =>
         connection.received(x => x.Open());
 
+      It should_run_a_stored_procedure = () =>
+        command.received(x => x.ExecuteNonQuery());
+
       It should_return_the_sum = () =>
-        result.ShouldEqual(5);
+        sut.add(2, 3).ShouldEqual(5);
 
       static IDbConnection connection;
-      static int result;
+      static IDbCommand command;
     }
 
     public class when_attempting_to_add_a_Negative_to_a_positive : concern
