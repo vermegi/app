@@ -1,7 +1,8 @@
 config = 
 {
-  :has_iis_express => false,
+  :has_iis_express => true,
   :iis_express => 'c:\utils\iis_express\iisexpress.exe',
-  :browser => 'C:\utils\firefox\firefox.exe'
+  :browser => 'C:\utils\firefox\firefox.exe',
+  :our_custom_setting => 'This is my own setting'
 }
 configatron.configure_from_hash config
