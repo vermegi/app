@@ -1,9 +1,11 @@
 config = 
 {
   :has_iis_express => true,
+  :kill_runner_processes => true,
   :iis_express => 'c:\utils\iis_express\iisexpress.exe',
   :browser => 'C:\utils\firefox\firefox.exe',
   :our_custom_setting => 'This is my own setting',
   :start_url => "http://localhost:8080/blah.brussels",
+  :runner_processes => delayed{%W/#{configatron.browser.base_name_without_extension} iis_express cmd/}
 }
 configatron.configure_from_hash config
