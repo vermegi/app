@@ -1,7 +1,10 @@
-﻿namespace app.web.application.catalogbrowsing
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace app.web.application.catalogbrowsing
 {
   public interface IFindDepartments
   {
-    void get_the_main_departments();
+    IEnumerable<Department> get_the_main_departments();
   }
 }

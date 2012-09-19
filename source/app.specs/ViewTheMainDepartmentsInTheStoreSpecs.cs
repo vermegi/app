@@ -1,4 +1,5 @@
-﻿using Machine.Specifications;
+﻿using System.Collections.Generic;
+using Machine.Specifications;
 using app.web.application.catalogbrowsing;
 using app.web.core;
 using developwithpassion.specifications.extensions;
@@ -20,6 +21,7 @@ namespace app.specs
       {
         request = fake.an<IEncapsulateRequestDetails>();
         department_repository = depends.on<IFindDepartments>();
+          department_repository.setup(x => x.get_the_main_departments()).Return(departments);
       };
 
       Because b = () =>
@@ -28,8 +30,13 @@ namespace app.specs
       It should_get_the_main_departments = () =>
         department_repository.received(x => x.get_the_main_departments());
 
+        private It should_ask_the_renderer_to_show_the_departments = () =>
+                                                                     renderer.received(x => x.display(departments));
+
       static IFindDepartments department_repository;
       static IEncapsulateRequestDetails request;
+        private static IRenderDepartments renderer;
+        private static IEnumerable<Department> departments;
     }
   }
 }
