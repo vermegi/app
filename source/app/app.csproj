@@ -79,9 +79,14 @@
   <ItemGroup>
     <Compile Include="Calculator.cs" />
     <Compile Include="MessageGenerator.cs" />
+    <Compile Include="web\application\catalogbrowsing\ViewTheProductsFromADepartment.cs" />
+    <Compile Include="web\application\catalogbrowsing\IFindProducts.cs" />
+    <Compile Include="web\application\catalogbrowsing\Product.cs" />
+    <Compile Include="web\application\catalogbrowsing\ProductsFromADepartmentRequest.cs" />
     <Compile Include="web\application\catalogbrowsing\Department.cs" />
     <Compile Include="web\application\catalogbrowsing\DepartmentsInADepartmentRequest.cs" />
     <Compile Include="web\application\catalogbrowsing\IFindDepartments.cs" />
+    <Compile Include="web\application\catalogbrowsing\stubs\StubProductRepository.cs" />
     <Compile Include="web\application\catalogbrowsing\stubs\StubDepartmentRepository.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheDepartmentsInADepartment.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewTheMainDepartmentsInTheStore.cs" />
