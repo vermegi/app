@@ -2,9 +2,16 @@
 {
   public class WebFormDisplayEngine : IDisplayReports
   {
-    public void display<ReportModel>(ReportModel report)
+      private ICreateDisplayHandlers displayHandlersFactory;
+
+      public WebFormDisplayEngine(ICreateDisplayHandlers displayHandlersFactory)
+      {
+          this.displayHandlersFactory = displayHandlersFactory;
+      }
+
+      public void display<ReportModel>(ReportModel report)
     {
-      throw new System.NotImplementedException();
+      displayHandlersFactory.create_handler_to_display(report);
     }
   }
 }
