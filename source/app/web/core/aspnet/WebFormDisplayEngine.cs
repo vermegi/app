@@ -2,16 +2,16 @@
 {
   public class WebFormDisplayEngine : IDisplayReports
   {
-      private ICreateDisplayHandlers displayHandlersFactory;
+    ICreateDisplayHandlers handler_factory;
 
-      public WebFormDisplayEngine(ICreateDisplayHandlers displayHandlersFactory)
-      {
-          this.displayHandlersFactory = displayHandlersFactory;
-      }
-
-      public void display<ReportModel>(ReportModel report)
+    public WebFormDisplayEngine(ICreateDisplayHandlers handlers_factory)
     {
-      displayHandlersFactory.create_handler_to_display(report);
+      this.handler_factory = handlers_factory;
+    }
+
+    public void display<ReportModel>(ReportModel report)
+    {
+      handler_factory.create_handler_to_display(report);
     }
   }
 }
