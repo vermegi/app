@@ -20,23 +20,22 @@ namespace app.specs
       Establish c = () =>
       {
         request = fake.an<IEncapsulateRequestDetails>();
+        renderer = depends.on<IDisplayReports>();
         department_repository = depends.on<IFindDepartments>();
-          department_repository.setup(x => x.get_the_main_departments()).Return(departments);
+        departments = new List<Department>();
+        department_repository.setup(x => x.get_the_main_departments()).Return(departments);
       };
 
       Because b = () =>
         sut.run(request);
 
-      It should_get_the_main_departments = () =>
-        department_repository.received(x => x.get_the_main_departments());
-
-        private It should_ask_the_renderer_to_show_the_departments = () =>
-                                                                     renderer.received(x => x.display(departments));
+      It should_ask_the_renderer_to_show_the_departments = () =>
+        renderer.received(x => x.display(departments));
 
       static IFindDepartments department_repository;
       static IEncapsulateRequestDetails request;
-        private static IRenderDepartments renderer;
-        private static IEnumerable<Department> departments;
+      static IDisplayReports renderer;
+      static IEnumerable<Department> departments;
     }
   }
 }

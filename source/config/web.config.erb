@@ -18,20 +18,20 @@
     </pages>
     <authentication mode="Windows"/>
     <% unless configatron.has_iis_express %>
-    <!--<httpHandlers>
-      <add path=""
+    <httpHandlers>
+      <add path="*.brussels"
         verb="*"
-        type=""/>
-        </httpHandlers> -->
+        type="app.web.core.aspnet.ASPNetHandler,app"/>
+        </httpHandlers>
     <% end %>
    </system.web>
   <system.webServer>
     <% if configatron.has_iis_express %>
-    <!--<handlers>
-      <add name="" path=""
+    <handlers>
+      <add name="blah" path="*.brussels"
         verb="*"
-        type=""/>
-        </handlers> -->
+        type="app.web.core.aspnet.ASPNetHandler,app"/>
+        </handlers> 
     <% end %>
   </system.webServer>
 

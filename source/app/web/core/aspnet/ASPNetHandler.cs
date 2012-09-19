@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using app.web.core.stubs;
 
 namespace app.web.core.aspnet
 {
@@ -6,6 +7,10 @@ namespace app.web.core.aspnet
   {
     IProcessRequests front_controller;
     ICreateControllerRequests request_factory;
+
+    public ASPNetHandler():this(new FrontController(),new StubRequestFactory())
+    {
+    }
 
     public ASPNetHandler(IProcessRequests processRequests, ICreateControllerRequests createControllerRequests)
     {
