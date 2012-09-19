@@ -19,7 +19,7 @@ namespace app.specs
     {
         private Establish c = () =>
         {
-            thename = "the name of the command";
+            thename = "the name of the command"; 
             details = depends.on<IEncapsulateRequestDetails>();
             details.setup(d => d.Name).Return(thename);
             request = fake.an<IEncapsulateRequestDetails>();
