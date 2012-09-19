@@ -1,2 +1,0 @@
-[Core]
-log_path : #<Configatron::Store:0x2bb5088>

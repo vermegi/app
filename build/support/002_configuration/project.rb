@@ -14,6 +14,6 @@ config =
   :app_dir => delayed{"source/#{configatron.project}.web.ui"},
   :log_file_name => delayed{"#{configatron.project}_log.txt"},
   :log_level => "DEBUG",
-  :runner_processes => delayed{%W/#{configatron.browser.base_name_without_extension} iis_express cmd/}
+  :runner_processes => delayed{%W/#{configatron.browser.base_name_without_extension} iisexpress cmd/}
 }
 configatron.configure_from_hash config
