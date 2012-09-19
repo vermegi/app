@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace app.web.application.catalogbrowsing.stubs
@@ -7,12 +8,12 @@ namespace app.web.application.catalogbrowsing.stubs
   {
     public IEnumerable<Department> get_the_main_departments()
     {
-      return Enumerable.Range(1, 100).Select(x => new Department{name = x.ToString("Department 0")});
+      return Enumerable.Range(1, 100).Select(x => new Department {name = x.ToString("Department 0")});
     }
 
-      public IEnumerable<Department> get_the_departments_for(string department_name)
-      {
-          return get_the_main_departments();
-      }
+    public IEnumerable<Department> get_the_departments_for(DepartmentsInADepartmentRequest request)
+    {
+      return Enumerable.Range(1, 100).Select(x => new Department {name = x.ToString("Sub Department 0")});
+    }
   }
 }

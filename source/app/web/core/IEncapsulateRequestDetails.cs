@@ -2,5 +2,6 @@
 {
   public interface IEncapsulateRequestDetails
   {
+    InputModel map<InputModel>();
   }
 }
