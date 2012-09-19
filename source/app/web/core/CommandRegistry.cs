@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace app.web
+namespace app.web.core
 {
   public class CommandRegistry : IFindCommands
   {

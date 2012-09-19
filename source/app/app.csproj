@@ -79,16 +79,20 @@
   <ItemGroup>
     <Compile Include="Calculator.cs" />
     <Compile Include="MessageGenerator.cs" />
-    <Compile Include="web\ASPNetHandler.cs" />
-    <Compile Include="web\CommandRegistry.cs" />
-    <Compile Include="web\FrontController.cs" />
-    <Compile Include="web\ICreateControllerRequests.cs" />
-    <Compile Include="web\IEncapsulateRequestDetails.cs" />
-    <Compile Include="web\IFindCommands.cs" />
-    <Compile Include="web\IProcessOneRequest.cs" />
-    <Compile Include="web\IProcessRequests.cs" />
-    <Compile Include="web\MissingCommandCreation_Behaviour.cs" />
-    <Compile Include="web\RequestProcessingCommand.cs" />
+    <Compile Include="web\application\catalogbrowsing\IFindDepartments.cs" />
+    <Compile Include="web\application\catalogbrowsing\ViewTheMainDepartmentsInTheStore.cs" />
+    <Compile Include="web\core\aspnet\ASPNetHandler.cs" />
+    <Compile Include="web\core\CommandRegistry.cs" />
+    <Compile Include="web\core\FrontController.cs" />
+    <Compile Include="web\core\ICreateControllerRequests.cs" />
+    <Compile Include="web\core\IEncapsulateRequestDetails.cs" />
+    <Compile Include="web\core\IFindCommands.cs" />
+    <Compile Include="web\core\IProcessOneRequest.cs" />
+    <Compile Include="web\core\IProcessRequests.cs" />
+    <Compile Include="web\core\ISupportAUserFeature.cs" />
+    <Compile Include="web\core\MissingCommandCreation_Behaviour.cs" />
+    <Compile Include="web\core\RequestMatch_Behaviour.cs" />
+    <Compile Include="web\core\RequestProcessingCommand.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

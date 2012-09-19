@@ -1,7 +1,6 @@
-﻿namespace app.web
+﻿namespace app.web.core
 {
   public interface IEncapsulateRequestDetails
   {
-      string Name { get; set; }
   }
 }

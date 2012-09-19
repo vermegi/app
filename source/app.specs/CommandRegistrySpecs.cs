@@ -2,6 +2,7 @@
 using System.Linq;
 using Machine.Specifications;
 using app.web;
+using app.web.core;
 using developwithpassion.specifications.rhinomocks;
 using developwithpassion.specifications.extensions;
 

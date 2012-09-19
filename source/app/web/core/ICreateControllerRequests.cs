@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace app.web
+namespace app.web.core
 {
   public interface ICreateControllerRequests
   {

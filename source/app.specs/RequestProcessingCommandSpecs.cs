@@ -1,40 +1,57 @@
-﻿ using Machine.Specifications;
- using app.web;
- using developwithpassion.specifications.rhinomocks;
- using developwithpassion.specifications.extensions;
+﻿using Machine.Specifications;
+using app.web;
+using app.web.core;
+using developwithpassion.specifications.rhinomocks;
+using developwithpassion.specifications.extensions;
 
 namespace app.specs
-{  
-  [Subject(typeof(RequestProcessingCommand))]  
+{
+  [Subject(typeof(RequestProcessingCommand))]
   public class RequestProcessingCommandSpecs
   {
     public abstract class concern : Observes<IProcessOneRequest,
                                       RequestProcessingCommand>
     {
-        
     }
 
-   
     public class when_determining_if_it_can_process_a_request : concern
     {
-        private Establish c = () =>
+      Establish c = () =>
+      {
+        request = fake.an<IEncapsulateRequestDetails>();
+        depends.on<RequestMatch_Behaviour>(x =>
         {
-            thename = "RequestProcessing"; 
-            
-            request = fake.an<IEncapsulateRequestDetails>();
-            request.setup(r => r.Name).Return(thename);
-        };
+          x.ShouldEqual(request);
+          return true;
+        });
+      };
 
-        private Because b = () =>
-                            result = sut.can_run(request);
+      Because b = () =>
+        result = sut.can_run(request);
 
-        private It should_be_able_to_process_our_request = () =>
-                                                           result.ShouldEqual(true);
+      It should_make_its_decision_by_leveraging_its_request_specfiication = () =>
+        result.ShouldBeTrue();
 
-        private static IEncapsulateRequestDetails request;
-        private static bool result;
-        private static IEncapsulateRequestDetails details;
-        private static string thename;
+      static IEncapsulateRequestDetails request;
+      static bool result;
+    }
+
+    public class when_processing_a_request : concern
+    {
+      Establish c = () =>
+      {
+        application_feature = depends.on<ISupportAUserFeature>();
+        request = fake.an<IEncapsulateRequestDetails>();
+      };
+
+      Because b = () =>
+        sut.run(request);
+
+      It should_dispatch_to_the_application_Feature = () =>
+        application_feature.received(x => x.run(request));
+
+      static IEncapsulateRequestDetails request;
+      static ISupportAUserFeature application_feature;
     }
   }
 }
