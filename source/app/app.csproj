@@ -79,7 +79,6 @@
   <ItemGroup>
     <Compile Include="Calculator.cs" />
     <Compile Include="MessageGenerator.cs" />
-    <Compile Include="web\application\catalogbrowsing\ViewTheProductsFromADepartment.cs" />
     <Compile Include="web\application\catalogbrowsing\IFindProducts.cs" />
     <Compile Include="web\application\catalogbrowsing\Product.cs" />
     <Compile Include="web\application\catalogbrowsing\ProductsFromADepartmentRequest.cs" />
@@ -88,13 +87,15 @@
     <Compile Include="web\application\catalogbrowsing\IFindDepartments.cs" />
     <Compile Include="web\application\catalogbrowsing\stubs\StubProductRepository.cs" />
     <Compile Include="web\application\catalogbrowsing\stubs\StubDepartmentRepository.cs" />
-    <Compile Include="web\application\catalogbrowsing\ViewTheDepartmentsInADepartment.cs" />
-    <Compile Include="web\application\catalogbrowsing\ViewTheMainDepartmentsInTheStore.cs" />
     <Compile Include="web\core\aspnet\ASPNetHandler.cs" />
+    <Compile Include="web\core\aspnet\ICreateDisplayHandlers.cs" />
+    <Compile Include="web\core\aspnet\WebFormDisplayEngine.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
+    <Compile Include="web\core\FetchReport_Behaviour.cs" />
     <Compile Include="web\core\FrontController.cs" />
     <Compile Include="web\core\ICreateControllerRequests.cs" />
     <Compile Include="web\core\IEncapsulateRequestDetails.cs" />
+    <Compile Include="web\core\IFetchAReport.cs" />
     <Compile Include="web\core\IFind.cs" />
     <Compile Include="web\core\IFindCommands.cs" />
     <Compile Include="web\core\IProcessOneRequest.cs" />
@@ -107,7 +108,7 @@
     <Compile Include="web\core\stubs\StubDisplayEngine.cs" />
     <Compile Include="web\core\stubs\StubRequestFactory.cs" />
     <Compile Include="web\core\stubs\StubSetOfCommands.cs" />
-    <Compile Include="web\core\ViewType.cs" />
+    <Compile Include="web\core\ViewReport.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

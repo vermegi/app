@@ -116,14 +116,12 @@
     <Compile Include="ASPNetHandlerSpecs.cs" />
     <Compile Include="CalculatorSpecs.cs" />
     <Compile Include="CommandRegistrySpecs.cs" />
-    <Compile Include="ViewTypeSpecs.cs" />
-    <Compile Include="ViewTheProductsFromADepartmentSpecs.cs" />
+    <Compile Include="ViewReportSpecs.cs" />
     <Compile Include="FrontControllerSpecs.cs" />
     <Compile Include="MessageGeneratorSpecs.cs" />
     <Compile Include="RequestProcessingCommandSpecs.cs" />
     <Compile Include="utility\ObjectFactory.cs" />
-    <Compile Include="ViewTheDepartmentsInADepartmentSpecs.cs" />
-    <Compile Include="ViewTheMainDepartmentsInTheStoreSpecs.cs" />
+    <Compile Include="WebFormDisplayEngineSpecs.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
