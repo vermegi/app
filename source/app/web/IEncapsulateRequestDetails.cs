@@ -2,6 +2,6 @@
 {
   public interface IEncapsulateRequestDetails
   {
-     
+      string Name { get; set; }
   }
 }
