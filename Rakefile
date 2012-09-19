@@ -48,7 +48,5 @@ task :copy_config_files do
 end
 
 task :kill_iis do
-  %W/iisexpress cmd #{configatron.browser.base_name_without_extension}/.each do|process|
-    system("taskkill /IM #{process}.exe")
-  end
+  system("start kill_runner_processes.bat")
 end
