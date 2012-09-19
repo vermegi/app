@@ -26,7 +26,7 @@ namespace app.specs
         the_current_context = ObjectFactory.web.create_http_context();
         page_factory.setup(x => x.create_handler_to_display(the_report)).Return(the_page);
 
-        depends.on(the_current_context);
+        depends.on<GetTheCurrentlyExecutingRequest_Behaviour>(() => the_current_context);
       };
 
       Because b = () =>

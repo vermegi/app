@@ -88,7 +88,16 @@
     <Compile Include="web\application\catalogbrowsing\stubs\StubProductRepository.cs" />
     <Compile Include="web\application\catalogbrowsing\stubs\StubDepartmentRepository.cs" />
     <Compile Include="web\core\aspnet\ASPNetHandler.cs" />
+    <Compile Include="web\core\aspnet\ASPPageFactory.cs" />
+    <Compile Include="web\core\aspnet\CreateRawPage_Behaviour.cs" />
+    <Compile Include="web\core\aspnet\GetTheCurrentlyExecutingRequest_Behaviour.cs" />
     <Compile Include="web\core\aspnet\ICreateDisplayHandlers.cs" />
+    <Compile Include="web\core\aspnet\IFindPathsToLogicalViews.cs" />
+    <Compile Include="web\core\aspnet\IHttpHandler.cs" />
+    <Compile Include="web\core\aspnet\LogicalViewForA.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="web\core\aspnet\stubs\StubPathRegistry.cs" />
     <Compile Include="web\core\aspnet\WebFormDisplayEngine.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
     <Compile Include="web\core\FetchReport_Behaviour.cs" />
@@ -105,7 +114,6 @@
     <Compile Include="web\core\MissingCommandCreation_Behaviour.cs" />
     <Compile Include="web\core\RequestMatch_Behaviour.cs" />
     <Compile Include="web\core\RequestProcessingCommand.cs" />
-    <Compile Include="web\core\stubs\StubDisplayEngine.cs" />
     <Compile Include="web\core\stubs\StubRequestFactory.cs" />
     <Compile Include="web\core\stubs\StubSetOfCommands.cs" />
     <Compile Include="web\core\ViewReport.cs" />

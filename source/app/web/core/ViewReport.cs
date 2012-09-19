@@ -1,4 +1,4 @@
-﻿using app.web.core.stubs;
+﻿using app.web.core.aspnet;
 
 namespace app.web.core
 {
@@ -14,7 +14,7 @@ namespace app.web.core
       this.report_engine = report_engine;
     }
 
-    public ViewReport(QueryObject query):this(query,new StubDisplayEngine())
+    public ViewReport(QueryObject query) : this(query, new WebFormDisplayEngine())
     {
     }
 

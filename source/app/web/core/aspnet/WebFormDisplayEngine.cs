@@ -5,18 +5,23 @@ namespace app.web.core.aspnet
   public class WebFormDisplayEngine : IDisplayReports
   {
     ICreateDisplayHandlers handler_factory;
-      private HttpContext current_context;
+    GetTheCurrentlyExecutingRequest_Behaviour current_request_resolution;
 
-    public WebFormDisplayEngine(ICreateDisplayHandlers handlers_factory, HttpContext currentContext)
+    public WebFormDisplayEngine():this(new ASPPageFactory(),() => HttpContext.Current)
     {
-        this.handler_factory = handlers_factory;
-        current_context = currentContext;
     }
 
-      public void display<ReportModel>(ReportModel report)
+    public WebFormDisplayEngine(ICreateDisplayHandlers handlers_factory,
+                                GetTheCurrentlyExecutingRequest_Behaviour current_request_resolution)
+    {
+      this.handler_factory = handlers_factory;
+      this.current_request_resolution = current_request_resolution;
+    }
+
+    public void display<ReportModel>(ReportModel report)
     {
       var handler = handler_factory.create_handler_to_display(report);
-          handler.ProcessRequest(current_context);
+      handler.ProcessRequest(current_request_resolution());
     }
   }
 }

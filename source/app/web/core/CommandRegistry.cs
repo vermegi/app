@@ -26,7 +26,7 @@ namespace app.web.core
 
     public IProcessOneRequest get_the_command_that_can_process(IEncapsulateRequestDetails request)
     {
-      return all_commands.SingleOrDefault(process => process.can_run(request))
+      return all_commands.FirstOrDefault(process => process.can_run(request))
         ?? missing_command_creation();
     }
   }
