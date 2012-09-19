@@ -8,7 +8,7 @@ namespace app.web.core.stubs
   {
     public IEnumerator<IProcessOneRequest> GetEnumerator()
     {
-      yield return new RequestProcessingCommand(x => true, new ViewTheDepartmentsInADepartment());
+      yield return new RequestProcessingCommand(x => true, new ViewTheProductsInADepartment());
 //      yield return new RequestProcessingCommand(x => true, new ViewTheMainDepartmentsInTheStore());
     }
 

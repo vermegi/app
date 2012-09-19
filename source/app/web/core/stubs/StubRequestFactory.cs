@@ -14,7 +14,7 @@ namespace app.web.core.stubs
     {
       public InputModel map<InputModel>()
       {
-        object item = new DepartmentsInADepartmentRequest();
+        object item = new ProductsInADepartmentRequest();
         return (InputModel) item;
       }
     }

@@ -36,7 +36,7 @@ namespace :build do
   task :rebuild => ["clean","compile"]
 
   desc 'run the web application'
-  task :run => [:kill_iis,'build:web'] do
+  task :run => ['build:web'] do
     system("start start_web_app.bat")
     system("start #{configatron.browser} #{configatron.start_url}")
   end
