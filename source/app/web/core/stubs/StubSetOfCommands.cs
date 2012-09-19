@@ -8,8 +8,9 @@ namespace app.web.core.stubs
   {
     public IEnumerator<IProcessOneRequest> GetEnumerator()
     {
-      yield return new RequestProcessingCommand(x => true, new ViewTheDepartmentsInADepartment());
+//      yield return new RequestProcessingCommand(x => true, new ViewTheDepartmentsInADepartment());
 //      yield return new RequestProcessingCommand(x => true, new ViewTheMainDepartmentsInTheStore());
+      yield return new RequestProcessingCommand(x => true, new ViewTheProductsFromADepartment());
     }
 
     IEnumerator IEnumerable.GetEnumerator()
