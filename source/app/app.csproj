@@ -79,8 +79,12 @@
   <ItemGroup>
     <Compile Include="Calculator.cs" />
     <Compile Include="MessageGenerator.cs" />
+    <Compile Include="utility\logging\GetTheCallingType_Behaviour.cs" />
     <Compile Include="utility\logging\ICanLog.cs" />
+    <Compile Include="utility\logging\ICreateLoggers.cs" />
+    <Compile Include="utility\logging\IProvideAccessToLoggingServices.cs" />
     <Compile Include="utility\logging\Log.cs" />
+    <Compile Include="utility\logging\LoggingFactoryResolution_Behaviour.cs" />
     <Compile Include="web\application\catalogbrowsing\IFindProducts.cs" />
     <Compile Include="web\application\catalogbrowsing\Product.cs" />
     <Compile Include="web\application\catalogbrowsing\ProductsFromADepartmentRequest.cs" />

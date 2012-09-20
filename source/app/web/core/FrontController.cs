@@ -1,4 +1,6 @@
-﻿namespace app.web.core
+﻿using app.utility.logging;
+
+namespace app.web.core
 {
   public class FrontController : IProcessRequests
   {
