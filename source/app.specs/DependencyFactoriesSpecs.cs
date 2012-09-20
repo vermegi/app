@@ -34,7 +34,6 @@ namespace app.specs
           });
         };
 
-
         Because b = () =>
           spec.catch_exception(() => sut.get_factory_that_can_create(typeof(int)));
 
@@ -66,14 +65,9 @@ namespace app.specs
         It should_return_the_factory_that_can_create_it = () =>
           result.ShouldEqual(the_factory);
 
-        static
-          ICreateOneDependency result;
-
-        static
-          ICreateOneDependency the_factory;
-
-        static
-          List<ICreateOneDependency> all_factories;
+        static ICreateOneDependency result;
+        static ICreateOneDependency the_factory;
+        static List<ICreateOneDependency> all_factories;
       }
     }
   }

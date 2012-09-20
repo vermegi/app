@@ -1,29 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace app.utility.container
 {
-  public class DependencyFactories: IFindFactoriesForDependencies
+  public class DependencyFactories : IFindFactoriesForDependencies
   {
-      IEnumerable<ICreateOneDependency> possible_factories;
+    IEnumerable<ICreateOneDependency> possible_factories;
 
-      /// <summary>
-      /// Initializes a new instance of the <see cref="T:System.Object"/> class.
-      /// </summary>
-      public DependencyFactories(IEnumerable<ICreateOneDependency> possible_factories)
-      {
-          this.possible_factories = possible_factories;
-      }
-
-      public ICreateOneDependency get_factory_that_can_create(Type dependency)
+    public DependencyFactories(IEnumerable<ICreateOneDependency> possible_factories)
     {
-          foreach (var factory in possible_factories)
-          {
-              if (factory.can_create(dependency))
-                  return factory;
-          }
+      this.possible_factories = possible_factories;
+    }
 
-          throw new ArgumentException("couldn't find the factory.");
+    public ICreateOneDependency get_factory_that_can_create(Type dependency)
+    {
+      return possible_factories.First(x => x.can_create(dependency));
     }
   }
 }
