@@ -10,74 +10,54 @@ using app.web.core.stubs;
 
 namespace app.tasks.startup
 {
-  public class StartUp
-  {
-    static IList<ICreateOneDependency> all_factories = new List<ICreateOneDependency>();
-
-    public static void run()
+    public class StartUp
     {
-      GetTheActiveContainer_Behaviour resolution =
-        () =>
-          new Container(new DependencyFactories(all_factories, StartupItems.exception_factories.missing_factory),
-                        StartupItems.exception_factories.dependency_creation);
+        static IList<ICreateOneDependency> all_factories = new List<ICreateOneDependency>();
 
-      Dependencies.container_resolver = resolution;
+        public static void run()
+        {
+            GetTheActiveContainer_Behaviour resolution =
+              () =>
+                new Container(new DependencyFactories(all_factories, StartupItems.exception_factories.missing_factory),
+                              StartupItems.exception_factories.dependency_creation);
 
-      all_factories.Add(new DependencyCreator(x => x == typeof(IProcessRequests),
-                                              new FunctionalItemFactory(
-                                                () => new FrontController(Dependencies.fetch.an<IFindCommands>()))));
+            Dependencies.container_resolver = resolution;
 
-      all_factories.Add(new DependencyCreator(x => x == typeof(IFindCommands),
-                                              new FunctionalItemFactory(
-                                                () =>
-                                                  new CommandRegistry(
-                                                  Dependencies.fetch.an<IEnumerable<IProcessOneRequest>>(),
-                                                  StartupItems.exception_factories.missing_command))));
+            register_factorry_for(typeof(IProcessRequests), new FunctionalItemFactory(() => new FrontController(Dependencies.fetch.an<IFindCommands>())));
+            register_factorry_for(typeof(IFindCommands), new FunctionalItemFactory(() => new CommandRegistry(Dependencies.fetch.an<IEnumerable<IProcessOneRequest>>(), StartupItems.exception_factories.missing_command)));
+            register_factorry_for(typeof(IEnumerable<IProcessOneRequest>), new FunctionalItemFactory(() => new StubSetOfCommands()));
+            register_factorry_for(typeof(IDisplayReports), new FunctionalItemFactory(() => new WebFormDisplayEngine(Dependencies.fetch.an<ICreateDisplayHandlers>(), Dependencies.fetch.an<GetTheCurrentlyExecutingRequest_Behaviour>())));
+            register_factorry_for(typeof(GetTheCurrentlyExecutingRequest_Behaviour), new FunctionalItemFactory(() => HttpContext.Current));
+            register_factorry_for(typeof(ICreateDisplayHandlers), new FunctionalItemFactory(() => new ASPPageFactory(Dependencies.fetch.an<IFindPathsToLogicalViews>(), BuildManager.CreateInstanceFromVirtualPath)));
+            register_factorry_for(typeof(IFindPathsToLogicalViews), new FunctionalItemFactory(() => new StubPathRegistry()));
+        }
 
-      all_factories.Add(new DependencyCreator(x => x == typeof(IEnumerable<IProcessOneRequest>),
-                                              new FunctionalItemFactory(() => new StubSetOfCommands())));
+        private static void register_factorry_for(Type type, FunctionalItemFactory functionalItemFactory)
+        {
+            all_factories.Add(new DependencyCreator(x => x == type, functionalItemFactory));
+        }
 
-      all_factories.Add(new DependencyCreator(x => x == typeof(IDisplayReports),
-                                              new FunctionalItemFactory(
-                                                () =>
-                                                  new WebFormDisplayEngine(
-                                                  Dependencies.fetch.an<ICreateDisplayHandlers>(),
-                                                  Dependencies.fetch.an<GetTheCurrentlyExecutingRequest_Behaviour>()))));
+        class StartupItems
+        {
+            public class exception_factories
+            {
+                public static readonly MissingFactory_Behaviour missing_factory = type =>
+                {
+                    throw new NotImplementedException(string.Format("There is no factory registered that can create a {0}",
+                                                                    type.Name));
+                };
 
-      all_factories.Add(new DependencyCreator(x => x == typeof(GetTheCurrentlyExecutingRequest_Behaviour),
-                                              new FunctionalItemFactory(() => HttpContext.Current)));
+                public static DependencyCreation_Behaviour dependency_creation = (type, inner) =>
+                {
+                    throw new NotImplementedException(string.Format("There was an error attempting to create a {0}", type.Name),
+                                                      inner);
+                };
 
-      all_factories.Add(new DependencyCreator(x => x == typeof(ICreateDisplayHandlers),
-                                              new FunctionalItemFactory(
-                                                () =>
-                                                  new ASPPageFactory(Dependencies.fetch.an<IFindPathsToLogicalViews>(),
-                                                                     BuildManager.CreateInstanceFromVirtualPath))));
-
-      all_factories.Add(new DependencyCreator(x => x == typeof(IFindPathsToLogicalViews),
-                                              new FunctionalItemFactory(() => new StubPathRegistry())));
+                public static MissingCommandCreation_Behaviour missing_command = () =>
+                {
+                    throw new NotImplementedException("You don't have a command that can run this request");
+                };
+            }
+        }
     }
-
-    class StartupItems
-    {
-      public class exception_factories
-      {
-        public static readonly MissingFactory_Behaviour missing_factory = type =>
-        {
-          throw new NotImplementedException(string.Format("There is no factory registered that can create a {0}",
-                                                          type.Name));
-        };
-
-        public static DependencyCreation_Behaviour dependency_creation = (type, inner) =>
-        {
-          throw new NotImplementedException(string.Format("There was an error attempting to create a {0}", type.Name),
-                                            inner);
-        };
-
-        public static MissingCommandCreation_Behaviour missing_command = () =>
-        {
-          throw new NotImplementedException("You don't have a command that can run this request");
-        };
-      }
-    }
-  }
 }
