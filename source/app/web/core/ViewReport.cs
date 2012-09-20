@@ -1,6 +1,4 @@
-﻿using app.web.core.aspnet;
-
-namespace app.web.core
+﻿namespace app.web.core
 {
   public class ViewReport<QueryObject, ReportModel> : ISupportAUserFeature
     where QueryObject : IFetchAReport<ReportModel>
@@ -12,10 +10,6 @@ namespace app.web.core
     {
       this.query = query;
       this.report_engine = report_engine;
-    }
-
-    public ViewReport(QueryObject query) : this(query, new WebFormDisplayEngine())
-    {
     }
 
     public void run(IEncapsulateRequestDetails request)

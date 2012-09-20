@@ -1,6 +1,8 @@
-﻿using Machine.Specifications;
+﻿using System;
+using Machine.Specifications;
 using app.utility.container;
 using developwithpassion.specifications.rhinomocks;
+using developwithpassion.specifications.extensions;
 
 namespace app.specs
 {
@@ -16,19 +18,38 @@ namespace app.specs
         {
             Establish c = () =>
             {
-                depends.on<DependencyCreation_Behaviour>(x =>
+                depends.on<Predicate<Type>>(x =>
                 {
-                    x.ShouldEqual(typeof(ContainerSpecs.IAmAContract));
-                    return new ContainerSpecs.Implementer();                    
+                    x.ShouldEqual(typeof(int));
+                    return true;
                 });
             };
 
-            Because b = () => sut.can_create(typeof(ContainerSpecs.IAmAContract));
+            Because b = () => result = sut.can_create(typeof(int));
 
-            It should_say_Yes_I_Can = () =>
-                                      result.ShouldEqual(true);
+            It should_make_its_decision_by_using_its_type_specification = () =>
+                                      result.ShouldBeTrue();
 
             static bool result;
+        }
+
+        public class when_creating_the_dependency : concern
+        {
+            Establish c = () =>
+            {
+              real_factory = depends.on<ICreateAnItem>();
+
+              real_factory.setup(x => x.create()).Return(the_item);
+            };
+
+            Because b = () => result = sut.create();
+
+            It should_delegate_to_the_actual_factory_for_creation = () =>
+                                      result.ShouldEqual(the_item);
+
+            static object result;
+            static object the_item;
+            static ICreateAnItem real_factory;
         }
     }
 }

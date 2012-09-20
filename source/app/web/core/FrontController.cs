@@ -9,10 +9,6 @@
       this.command_finder = command_finder;
     }
 
-    public FrontController() : this(new CommandRegistry())
-    {
-    }
-
     public void process(IEncapsulateRequestDetails request)
     {
       var the_command = command_finder.get_the_command_that_can_process(request);
