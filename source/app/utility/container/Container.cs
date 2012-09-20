@@ -1,18 +1,30 @@
-﻿namespace app.utility.container
+﻿using System;
+
+namespace app.utility.container
 {
   public class Container : IFetchDependencies
   {
     IFindFactoriesForDependencies factories;
+      DependencyCreationExceptionFactory_Behaviour exception_creation_behaviour;
 
-    public Container(IFindFactoriesForDependencies factories)
+    public Container(IFindFactoriesForDependencies factories, DependencyCreationExceptionFactory_Behaviour exceptionCreationBehaviour)
     {
-      this.factories = factories;
+        this.factories = factories;
+        exception_creation_behaviour = exceptionCreationBehaviour;
     }
 
-    public Collaborator an<Collaborator>()
+      public Collaborator an<Collaborator>()
     {
-      var factory = factories.get_factory_that_can_create(typeof(Collaborator));
-      return (Collaborator)factory.create();
+          try
+          {
+              var factory = factories.get_factory_that_can_create(typeof(Collaborator));
+              return (Collaborator)factory.create();
+          }
+          catch (Exception e)
+          {
+              var exception = exception_creation_behaviour(typeof (Collaborator), e);
+              throw exception;
+          }
     }
   }
 }
