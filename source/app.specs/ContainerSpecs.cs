@@ -71,7 +71,7 @@ namespace app.specs
           factories.setup(x => x.get_factory_that_can_create(typeof(IAmAContract))).Return(factory);
           factory.setup(x => x.create()).Throw(an_exception);
 
-          depends.on<DependencyCreationExceptionFactory_Behaviour>((x,inner) =>
+          depends.on<DependencyCreation_Behaviour>((x,inner) =>
           {
             x.ShouldEqual(typeof(IAmAContract));
             inner.ShouldEqual(an_exception);

@@ -5,10 +5,10 @@ namespace app.utility.container
   public class Container : IFetchDependencies
   {
     IFindFactoriesForDependencies factories;
-    DependencyCreationExceptionFactory_Behaviour exception_creation_behaviour;
+    DependencyCreation_Behaviour exception_creation_behaviour;
 
     public Container(IFindFactoriesForDependencies factories,
-                     DependencyCreationExceptionFactory_Behaviour exception_creation_behaviour)
+                     DependencyCreation_Behaviour exception_creation_behaviour)
     {
       this.factories = factories;
       this.exception_creation_behaviour = exception_creation_behaviour;
