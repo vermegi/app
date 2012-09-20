@@ -23,7 +23,7 @@ namespace app.tasks.startup
 
       Dependencies.container_resolver = resolution;
 
-      all_factories.Add(new DependencyCreator(x => x == typeof(IProcessOneRequest),
+      all_factories.Add(new DependencyCreator(x => x == typeof(IProcessRequests),
         new FunctionalItemFactory(() => new FrontController(Dependencies.fetch.an<IFindCommands>()))));
 
       all_factories.Add(new DependencyCreator(x => x == typeof(IFindCommands),
@@ -49,7 +49,6 @@ namespace app.tasks.startup
 
         all_factories.Add(new DependencyCreator(x => x == typeof(IFindPathsToLogicalViews),
             new FunctionalItemFactory(() => new StubPathRegistry())));
-
 
     }
 
