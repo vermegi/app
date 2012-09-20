@@ -10,7 +10,7 @@ CodeFile="DepartmentBrowser.aspx.cs"
               <% foreach (var department in this.report_model)
                  { %>            
               <tr class="ListItem">
-               <td><a href="#"><%= department.name %></a></td>
+               <td><a href="<%= !department.has_product ? "departmentsinadepartment.brussels" : "products.brussels"  %>"><%= department.name %></a></td>
            	  </tr>        
               
               <% } %>

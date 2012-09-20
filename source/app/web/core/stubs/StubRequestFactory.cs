@@ -7,12 +7,17 @@ namespace app.web.core.stubs
   {
     public IEncapsulateRequestDetails create_request_from(HttpContext an_context)
     {
-      return new StubRequest();
+            return new StubRequest
+                {
+                    somedata = an_context.Request.Path
+                };
     }
 
     class StubRequest : IEncapsulateRequestDetails
     {
-      public InputModel map<InputModel>()
+        public string somedata { get; set; }
+
+        public InputModel map<InputModel>()
       {
         return Activator.CreateInstance<InputModel>();
       }

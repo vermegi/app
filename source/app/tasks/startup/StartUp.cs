@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web;
 using app.utility.container;
+using app.web.application.catalogbrowsing;
 using app.web.core;
+using app.web.core.aspnet;
+using app.web.core.aspnet.stubs;
 using app.web.core.stubs;
 
 namespace app.tasks.startup
@@ -28,6 +32,24 @@ namespace app.tasks.startup
 
       all_factories.Add(new DependencyCreator(x => x == typeof(IEnumerable<IProcessOneRequest>),
       new FunctionalItemFactory(() => new StubSetOfCommands())));
+
+        all_factories.Add(new DependencyCreator(x => x == typeof(IDisplayReports), 
+            new FunctionalItemFactory(() => new WebFormDisplayEngine(Dependencies.fetch.an<ICreateDisplayHandlers>(), () => HttpContext.Current))));
+
+        CreateRawPage_Behaviour view_finder = (path, type) =>
+        {
+            if (path.Contains("department"))
+                return new LogicalViewForA<IEnumerable<Department>>();
+            
+            return new LogicalViewForA<IEnumerable<Product>>();
+        };
+
+        all_factories.Add(new DependencyCreator(x => x == typeof(ICreateDisplayHandlers),
+            new FunctionalItemFactory(() => new ASPPageFactory(Dependencies.fetch.an<IFindPathsToLogicalViews>(), view_finder))));
+
+        all_factories.Add(new DependencyCreator(x => x == typeof(IFindPathsToLogicalViews),
+            new FunctionalItemFactory(() => new StubPathRegistry())));
+
 
     }
 

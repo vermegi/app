@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using app.utility.container;
 using app.web.application.catalogbrowsing;
 using app.web.application.catalogbrowsing.stubs;
 
@@ -9,17 +10,16 @@ namespace app.web.core.stubs
   {
     public IEnumerator<IProcessOneRequest> GetEnumerator()
     {
-      yield break;
-//      yield return  new RequestProcessingCommand(x => true, new ViewReport<GetTheProducts, IEnumerable<Product>>(
-//                                                new GetTheProducts()));
-//      yield return
-//        new RequestProcessingCommand(x => true, new ViewReport<GetTheDepartmentsInADepartment, IEnumerable<Department>>(
-//                                                  new GetTheDepartmentsInADepartment()));
-//
-//      yield return
-//        new RequestProcessingCommand(x => true, new ViewReport<GetTheMainDepartments, IEnumerable<Department>>(
-//                                                  new GetTheMainDepartments()));
-    }
+        yield return new RequestProcessingCommand(x => x.somedata.Contains("products"), new ViewReport<GetTheProducts, IEnumerable<Product>>(
+                                                  new GetTheProducts(), Dependencies.fetch.an<IDisplayReports>()));
+        yield return
+          new RequestProcessingCommand(x => x.somedata.Contains("departments"), new ViewReport<GetTheDepartmentsInADepartment, IEnumerable<Department>>(
+                                                    new GetTheDepartmentsInADepartment(), Dependencies.fetch.an<IDisplayReports>()));
+
+        yield return
+          new RequestProcessingCommand(x => x.somedata.Contains("departmentsinadepartment"), new ViewReport<GetTheMainDepartments, IEnumerable<Department>>(
+                                                    new GetTheMainDepartments(), Dependencies.fetch.an<IDisplayReports>()));
+    } 
 
     public class GetTheMainDepartments : IFetchAReport<IEnumerable<Department>>
     {
