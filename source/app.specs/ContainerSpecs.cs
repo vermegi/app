@@ -15,6 +15,28 @@ namespace app.specs
 
     public class when_resolving_a_dependency : concern
     {
+      public class in_a_runtime_context
+      {
+        Establish c = () =>
+        {
+          factories = depends.on<IFindFactoriesForDependencies>();
+          factory = fake.an<ICreateOneDependency>();
+          implementer = new Implementer();
+          factories.setup(x => x.get_factory_that_can_create(typeof(IAmAContract))).Return(factory);
+          factory.setup(x => x.create()).Return(implementer);
+        };
+
+        Because b = () =>
+          result = sut.an(typeof(IAmAContract));
+
+        It should_return_the_dependency_created_by_the_factory_that_can_create_it = () =>
+          result.ShouldEqual(implementer);
+
+        static object result;
+        static IFindFactoriesForDependencies factories;
+        static Implementer implementer;
+        static ICreateOneDependency factory;
+      }
       public class and_it_has_the_factory_to_create_the_dependency
       {
         Establish c = () =>
@@ -32,13 +54,13 @@ namespace app.specs
         It should_return_the_dependency_created_by_the_factory_that_can_create_it = () =>
           result.ShouldEqual(implementer);
 
-        static object result;
+        static IAmAContract result;
         static IFindFactoriesForDependencies factories;
         static Implementer implementer;
         static ICreateOneDependency factory;
       }
 
-      public class and_the_factory_that_creates_the_dependency_throws_an_error_on_creation
+      public class and_the_factory_that_creates_the_dependency_throws_an_exception_on_creation
       {
         Establish c = () =>
         {
