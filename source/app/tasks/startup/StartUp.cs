@@ -23,41 +23,28 @@ namespace app.tasks.startup
 
       Dependencies.container_resolver = resolution;
 
-      all_factories.Add(new DependencyCreator(x => x == typeof(IProcessRequests),
-                                              new FunctionalItemFactory(
-                                                () => new FrontController(Dependencies.fetch.an<IFindCommands>()))));
-
-      all_factories.Add(new DependencyCreator(x => x == typeof(IFindCommands),
-                                              new FunctionalItemFactory(
-                                                () =>
-                                                  new CommandRegistry(
+      all_factories.Add(create_dependency_for<IProcessRequests>(() => new FrontController(Dependencies.fetch.an<IFindCommands>())));
+      all_factories.Add(create_dependency_for<IFindCommands>(() => new CommandRegistry(
                                                   Dependencies.fetch.an<IEnumerable<IProcessOneRequest>>(),
-                                                  StartupItems.exception_factories.missing_command))));
-
-      all_factories.Add(new DependencyCreator(x => x == typeof(IEnumerable<IProcessOneRequest>),
-                                              new FunctionalItemFactory(() => new StubSetOfCommands())));
-
-      all_factories.Add(new DependencyCreator(x => x == typeof(IDisplayReports),
-                                              new FunctionalItemFactory(
-                                                () =>
-                                                  new WebFormDisplayEngine(
+                                                  StartupItems.exception_factories.missing_command)));
+      all_factories.Add(create_dependency_for<IEnumerable<IProcessOneRequest>>(() => new StubSetOfCommands()));
+      all_factories.Add(create_dependency_for<IEnumerable<IDisplayReports>>(() => new WebFormDisplayEngine(
                                                   Dependencies.fetch.an<ICreateDisplayHandlers>(),
-                                                  Dependencies.fetch.an<GetTheCurrentlyExecutingRequest_Behaviour>()))));
-
-      all_factories.Add(new DependencyCreator(x => x == typeof(GetTheCurrentlyExecutingRequest_Behaviour),
-                                              new FunctionalItemFactory(() => HttpContext.Current)));
-
-      all_factories.Add(new DependencyCreator(x => x == typeof(ICreateDisplayHandlers),
-                                              new FunctionalItemFactory(
-                                                () =>
-                                                  new ASPPageFactory(Dependencies.fetch.an<IFindPathsToLogicalViews>(),
-                                                                     BuildManager.CreateInstanceFromVirtualPath))));
-
-      all_factories.Add(new DependencyCreator(x => x == typeof(IFindPathsToLogicalViews),
-                                              new FunctionalItemFactory(() => new StubPathRegistry())));
+                                                  Dependencies.fetch.an<GetTheCurrentlyExecutingRequest_Behaviour>())));
+      all_factories.Add(create_dependency_for<GetTheCurrentlyExecutingRequest_Behaviour>(() => HttpContext.Current));
+      all_factories.Add(create_dependency_for<ICreateDisplayHandlers>(() => new ASPPageFactory(Dependencies.fetch.an<IFindPathsToLogicalViews>(),
+                                                                     BuildManager.CreateInstanceFromVirtualPath)));
+      all_factories.Add(create_dependency_for<IFindPathsToLogicalViews>(() => new StubPathRegistry()));
     }
 
-    class StartupItems
+      static ICreateOneDependency create_dependency_for<T>(Func<object> to_create)
+      {
+          return new DependencyCreator(x => x == typeof (T),
+                                       new FunctionalItemFactory(
+                                           () => to_create));
+      }
+
+      class StartupItems
     {
       public class exception_factories
       {
