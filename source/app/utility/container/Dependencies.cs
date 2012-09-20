@@ -11,7 +11,7 @@ namespace app.utility.container
 
     public static IFetchDependencies fetch
     {
-      get { throw new System.NotImplementedException(); }
+      get { return container_resolver(); }
     }
   }
 }
