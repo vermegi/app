@@ -26,7 +26,7 @@ namespace app.tasks.startup
           StartupItems.exception_factories.missing_command))));
 
       all_factories.Add(new DependencyCreator(x => x == typeof(IEnumerable<IProcessOneRequest>),
-      new FunctionalItemFactory(() => new StubSetOfCommands());
+      new FunctionalItemFactory(() => new StubSetOfCommands())));
 
     }
 
@@ -34,17 +34,19 @@ namespace app.tasks.startup
     {
       public class exception_factories
       {
-        public static readonly MissingFactory_Behaviour missing_factory = type =>
-        {
-          throw new NotImplementedException(string.Format("There is no factory registered that can create a {0}",type.Name));
-        }
-        public static DependencyCreation_Behaviour dependency_creation = (type,inner) =>
-        {
-          throw new NotImplementedException(string.Format("There was an error attempting to create a {0}",type.Name),inner);
-        }
+          public static readonly MissingFactory_Behaviour missing_factory = type =>
+          {
+              throw new NotImplementedException(string.Format("There is no factory registered that can create a {0}",
+                                                              type.Name));
+          };
+          public static DependencyCreation_Behaviour dependency_creation = (type, inner) =>
+          {
+              throw new NotImplementedException(
+                  string.Format("There was an error attempting to create a {0}", type.Name), inner);
+          };
         public static MissingCommandCreation_Behaviour missing_command = () =>
         {
-          throw new NotImplementedException("You don't have a command that can run this request");
+            throw new NotImplementedException("You don't have a command that can run this request");
         };
       }
     }
