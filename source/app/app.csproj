@@ -88,6 +88,7 @@
     <Compile Include="utility\container\ICreateOneDependency.cs" />
     <Compile Include="utility\container\IFetchDependencies.cs" />
     <Compile Include="utility\container\IFindFactoriesForDependencies.cs" />
+    <Compile Include="utility\container\MissingFactory_Behaviour.cs" />
     <Compile Include="utility\logging\GetTheCallingType_Behaviour.cs" />
     <Compile Include="utility\logging\ICanLog.cs" />
     <Compile Include="utility\logging\ICreateLoggers.cs" />
