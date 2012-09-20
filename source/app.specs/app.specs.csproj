@@ -117,6 +117,7 @@
     <Compile Include="ASPPageFactorySpecs.cs" />
     <Compile Include="CalculatorSpecs.cs" />
     <Compile Include="CommandRegistrySpecs.cs" />
+    <Compile Include="DependenciesSpecs.cs" />
     <Compile Include="LogSpecs.cs" />
     <Compile Include="utility\spec.cs" />
     <Compile Include="ViewReportSpecs.cs" />

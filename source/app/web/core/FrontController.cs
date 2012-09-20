@@ -1,6 +1,4 @@
-﻿using app.utility.logging;
-
-namespace app.web.core
+﻿namespace app.web.core
 {
   public class FrontController : IProcessRequests
   {
@@ -11,7 +9,7 @@ namespace app.web.core
       this.command_finder = command_finder;
     }
 
-    public FrontController():this(new CommandRegistry())
+    public FrontController() : this(new CommandRegistry())
     {
     }
 
