@@ -1,10 +1,18 @@
 ﻿namespace app.utility.container
 {
-    public class Container : IFetchDependencies
+  public class Container : IFetchDependencies
+  {
+    IFindFactoriesForDependencies factories;
+
+    public Container(IFindFactoriesForDependencies factories)
     {
-        public Collaborator an<Collaborator>()
-        {
-            throw new System.NotImplementedException();
-        }
+      this.factories = factories;
     }
+
+    public Collaborator an<Collaborator>()
+    {
+      var factory = factories.get_factory_that_can_create(typeof(Collaborator));
+      return (Collaborator)factory.create();
+    }
+  }
 }
