@@ -7,15 +7,21 @@ namespace app.utility.container
   public class DependencyFactories : IFindFactoriesForDependencies
   {
     IEnumerable<ICreateOneDependency> possible_factories;
+      MissingFactory_Behaviour no_factory_found_behaviour;
 
-    public DependencyFactories(IEnumerable<ICreateOneDependency> possible_factories)
+    public DependencyFactories(IEnumerable<ICreateOneDependency> possible_factories, MissingFactory_Behaviour no_factory_found_behaviour)
     {
-      this.possible_factories = possible_factories;
+        this.possible_factories = possible_factories;
+        this.no_factory_found_behaviour = no_factory_found_behaviour;
     }
 
-    public ICreateOneDependency get_factory_that_can_create(Type dependency)
-    {
-      return possible_factories.First(x => x.can_create(dependency));
-    }
+      public ICreateOneDependency get_factory_that_can_create(Type dependency)
+      {
+          var factory = possible_factories.FirstOrDefault(x => x.can_create(dependency));
+
+          if (factory != null) return factory;
+
+          throw no_factory_found_behaviour(dependency);
+    } 
   }
 }
