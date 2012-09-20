@@ -100,9 +100,4 @@ namespace app.specs
     {
     }
   }
-
-  interface IConfigureAContainer
-  {
-    T create<T>();
-  }
 }
