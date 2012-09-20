@@ -1,6 +1,6 @@
 ﻿namespace app.utility.container
 {
-    public class FetchDependencies : IFetchDependencies
+    public class Container : IFetchDependencies
     {
         public Collaborator an<Collaborator>()
         {

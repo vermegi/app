@@ -1,7 +1,6 @@
 ﻿using Machine.Specifications;
 using app.utility.container;
 using developwithpassion.specifications.rhinomocks;
-using developwithpassion.specifications.extensions;
 
 namespace app.specs
 {
@@ -10,7 +9,6 @@ namespace app.specs
   {
     public abstract class concern : Observes
     {
-
     }
 
     public class when_providing_access_to_the_container_facade : concern
@@ -21,6 +19,7 @@ namespace app.specs
         GetTheActiveContainer_Behaviour resolution = () => the_container_facade;
         spec.change(() => Dependencies.container_resolver).to(resolution);
       };
+
       Because b = () =>
         result = Dependencies.fetch;
 
