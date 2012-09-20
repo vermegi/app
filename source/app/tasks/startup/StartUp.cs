@@ -27,7 +27,7 @@ namespace app.tasks.startup
           StartupItems.exception_factories.missing_command))));
 
       all_factories.Add(new DependencyCreator(x => x == typeof(IEnumerable<IProcessOneRequest>),
-      new FunctionalItemFactory(() => new StubSetOfCommands());
+      new FunctionalItemFactory(() => new StubSetOfCommands()));
 
     }
 
