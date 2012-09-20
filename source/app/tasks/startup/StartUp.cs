@@ -1,5 +1,4 @@
 ﻿using app.utility.container;
-using app.web.core;
 
 namespace app.tasks.startup
 {
@@ -9,8 +8,6 @@ namespace app.tasks.startup
     {
       GetTheActiveContainer_Behaviour resolution = () => new Container(null, null);
       Dependencies.container_resolver = resolution;
-      new DependencyCreator(x => x == typeof(IProcessRequests), new FunctionalItemFactory(() => new FrontController()));
-
     }
   }
 }

@@ -9,15 +9,16 @@ namespace app.web.core.stubs
   {
     public IEnumerator<IProcessOneRequest> GetEnumerator()
     {
-      yield return  new RequestProcessingCommand(x => true, new ViewReport<GetTheProducts, IEnumerable<Product>>(
-                                                new GetTheProducts()));
-      yield return
-        new RequestProcessingCommand(x => true, new ViewReport<GetTheDepartmentsInADepartment, IEnumerable<Department>>(
-                                                  new GetTheDepartmentsInADepartment()));
-
-      yield return
-        new RequestProcessingCommand(x => true, new ViewReport<GetTheMainDepartments, IEnumerable<Department>>(
-                                                  new GetTheMainDepartments()));
+      yield break;
+//      yield return  new RequestProcessingCommand(x => true, new ViewReport<GetTheProducts, IEnumerable<Product>>(
+//                                                new GetTheProducts()));
+//      yield return
+//        new RequestProcessingCommand(x => true, new ViewReport<GetTheDepartmentsInADepartment, IEnumerable<Department>>(
+//                                                  new GetTheDepartmentsInADepartment()));
+//
+//      yield return
+//        new RequestProcessingCommand(x => true, new ViewReport<GetTheMainDepartments, IEnumerable<Department>>(
+//                                                  new GetTheMainDepartments()));
     }
 
     public class GetTheMainDepartments : IFetchAReport<IEnumerable<Department>>
