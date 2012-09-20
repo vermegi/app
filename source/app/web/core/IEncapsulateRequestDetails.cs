@@ -2,7 +2,7 @@
 {
   public interface IEncapsulateRequestDetails
   {
-      string somedata { get; set; }
+    string somedata { get; set; }
     InputModel map<InputModel>();
   }
 }
