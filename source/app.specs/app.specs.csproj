@@ -123,6 +123,7 @@
     <Compile Include="DependencyFactoriesSpecs.cs" />
     <Compile Include="FunctionalItemFactorySpecs.cs" />
     <Compile Include="LogSpecs.cs" />
+    <Compile Include="OrchestratorSpecs.cs" />
     <Compile Include="StartupSpecs.cs" />
     <Compile Include="utility\spec.cs" />
     <Compile Include="ViewReportSpecs.cs" />

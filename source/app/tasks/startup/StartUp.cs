@@ -6,9 +6,9 @@ namespace app.tasks.startup
   {
     public static void run()
     {
-      Start.by<RegisterCoreComponents>()
-        .followed_by<RegisterWebComponents>()
-        .finish_by<RegisterRoutes>();
+      Start.by<RegisterCoreComponents>();
+        //.followed_by<RegisterWebComponents>()
+        //.finish_by<RegisterRoutes>();
     }
   }
 }

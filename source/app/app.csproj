@@ -79,8 +79,10 @@
   <ItemGroup>
     <Compile Include="Calculator.cs" />
     <Compile Include="MessageGenerator.cs" />
+    <Compile Include="tasks\startup\IComposeSteps.cs" />
     <Compile Include="tasks\startup\IProvideStartupServices.cs" />
     <Compile Include="tasks\startup\ITakePartInStartup.cs" />
+    <Compile Include="tasks\startup\Start.cs" />
     <Compile Include="tasks\startup\steps\RegisterCoreComponents.cs" />
     <Compile Include="tasks\startup\steps\RegisterRoutes.cs" />
     <Compile Include="tasks\startup\steps\RegisterWebComponents.cs" />
