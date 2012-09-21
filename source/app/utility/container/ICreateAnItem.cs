@@ -1,5 +1,7 @@
-namespace app.utility.container{
-  public interface ICreateAnItem{
+namespace app.utility.container
+{
+  public interface ICreateAnItem
+  {
     object create();
   }
 }
