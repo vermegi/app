@@ -10,7 +10,15 @@ CodeFile="DepartmentBrowser.aspx.cs"
               <% foreach (var department in this.report_model)
                  { %>            
               <tr class="ListItem">
-               <td><a href="<%= !department.has_product ? "departmentsinadepartment.brussels" : "products.brussels"  %>"><%= department.name %></a></td>
+               <td><a href="<%= Url.to.run<DepartmentsInADepartmentRequest>()
+                                    .or<ProductsFromADepartmentRequest>(() => department.has_product)
+                                    .include(config =>
+                                    {
+                                      config.details(department, y => y.item(dept => dept.id))
+                                    })
+                    
+                   
+                 %>"><%= department.name %></a></td>
            	  </tr>        
               
               <% } %>

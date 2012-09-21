@@ -1,24 +1,21 @@
-﻿ using System;
- using System.Data;
- using System.Data.SqlClient;
- using Machine.Specifications;
- using app.utility.container;
- using developwithpassion.specifications.rhinomocks;
- using developwithpassion.specifications.extensions;
+﻿using System;
+using System.Data;
+using System.Data.SqlClient;
+using Machine.Specifications;
+using app.utility.container;
+using developwithpassion.specifications.rhinomocks;
 
 namespace app.specs
-{  
-  [Subject(typeof(FunctionalItemFactory))]  
+{
+  [Subject(typeof(FunctionalItemFactory))]
   public class FunctionalItemFactorySpecs
   {
     public abstract class concern : Observes<ICreateAnItem,
                                       FunctionalItemFactory>
     {
-        
     }
 
-   
-    public class when_creating_an_item   : concern
+    public class when_creating_an_item : concern
     {
       Establish c = () =>
       {

@@ -115,6 +115,7 @@
   <ItemGroup>
     <Compile Include="ASPNetHandlerSpecs.cs" />
     <Compile Include="ASPPageFactorySpecs.cs" />
+    <Compile Include="AutomaticItemFactorySpecs.cs" />
     <Compile Include="CalculatorSpecs.cs" />
     <Compile Include="CommandRegistrySpecs.cs" />
     <Compile Include="DependenciesSpecs.cs" />

@@ -79,7 +79,14 @@
   <ItemGroup>
     <Compile Include="Calculator.cs" />
     <Compile Include="MessageGenerator.cs" />
+    <Compile Include="tasks\startup\IProvideStartupServices.cs" />
+    <Compile Include="tasks\startup\ITakePartInStartup.cs" />
+    <Compile Include="tasks\startup\steps\RegisterCoreComponents.cs" />
+    <Compile Include="tasks\startup\steps\RegisterRoutes.cs" />
+    <Compile Include="tasks\startup\steps\RegisterWebComponents.cs" />
     <Compile Include="tasks\startup\StartUp.cs" />
+    <Compile Include="tasks\startup\StartupItems.cs" />
+    <Compile Include="utility\container\AutomaticItemFactory.cs" />
     <Compile Include="utility\container\Dependencies.cs" />
     <Compile Include="utility\container\Container.cs" />
     <Compile Include="utility\container\DependencyCreation_Behaviour.cs" />
@@ -92,6 +99,7 @@
     <Compile Include="utility\container\ICreateOneDependency.cs" />
     <Compile Include="utility\container\IFetchDependencies.cs" />
     <Compile Include="utility\container\IFindFactoriesForDependencies.cs" />
+    <Compile Include="utility\container\IPickTheCtorOnTheTypeToCreate.cs" />
     <Compile Include="utility\container\MissingFactory_Behaviour.cs" />
     <Compile Include="utility\logging\GetTheCallingType_Behaviour.cs" />
     <Compile Include="utility\logging\ICanLog.cs" />
